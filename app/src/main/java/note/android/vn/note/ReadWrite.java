@@ -37,8 +37,6 @@ public class ReadWrite {
         }
     }
 
-
-
     public String readData() {
         StringBuffer stringBuffer = new StringBuffer();
         try {
@@ -69,23 +67,17 @@ public class ReadWrite {
                 JSONObject jsonObject = array.getJSONObject(i);
                 title = jsonObject.getString("title");
                 description = jsonObject.getString("description");
-
                 time = jsonObject.getString("time");
                 check = jsonObject.getString("check");
                 if (check.equals("false"))
                     isCheck = false;
                 else isCheck=true;
-
-
                 Notes notes = new Notes(isCheck,title, description, time);
                 arrayList.add(notes);
             }
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return arrayList;
-
     }
 }

@@ -25,13 +25,14 @@ public class NotesAdapter extends ArrayAdapter {
     Context myContext;
     int myLayout;
     ArrayList<Notes> arrayList;
-    public Boolean iCheck=null;
+    public Boolean iCheck = null;
+    boolean checkView;
 
 
-    public NotesAdapter(@NonNull Context context, @LayoutRes int layout, @NonNull ArrayList<Notes> arrayList,Boolean iCheck) {
+    public NotesAdapter(@NonNull Context context, @LayoutRes int layout, @NonNull ArrayList<Notes> arrayList, Boolean iCheck) {
 
         super(context, layout, arrayList);
-        this.iCheck=iCheck;
+        this.iCheck = iCheck;
         this.myContext = context;
         this.myLayout = layout;
         this.arrayList = arrayList;
@@ -52,8 +53,7 @@ public class NotesAdapter extends ArrayAdapter {
 
 
             convertView.setTag(viewHolder);
-        }
-        else viewHolder = (ViewHolder) convertView.getTag();
+        } else viewHolder = (ViewHolder) convertView.getTag();
 
         final Notes note = arrayList.get(position);
         viewHolder.tvTile.setText(note.getmTile().toString());
@@ -61,24 +61,39 @@ public class NotesAdapter extends ArrayAdapter {
         viewHolder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (viewHolder.checkBox.isChecked()) {
+
+
+            }
+        });
+
+
+
+        if (iCheck != null) {
+            if (iCheck) {
+                viewHolder.checkBox.setChecked(true);
+                viewHolder.checkBox.setVisibility(View.VISIBLE);
+            } else {
+                viewHolder.checkBox.setChecked(false);
+                viewHolder.checkBox.setVisibility(View.VISIBLE);
+            }
+        }
+
+        viewHolder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
                     note.setmCheckbox(true);
                 } else
                     note.setmCheckbox(false);
 
             }
         });
-        if(iCheck!=null) {
-            if (iCheck) {
-                viewHolder.checkBox.setChecked(true);
-            }
-            else
-            {
-                viewHolder.checkBox.setChecked(false);
-            }
-        }
 
-        viewHolder.checkBox.setVisibility(note.getmCheckbox() == true ? View.VISIBLE : View.GONE);
+        if (viewHolder.checkBox.isChecked())
+            note.setmCheckbox(true);
+        else
+            note.setmCheckbox(false);
+
 
         return convertView;
     }
@@ -95,4 +110,5 @@ public class NotesAdapter extends ArrayAdapter {
 
 
     }
+
 }

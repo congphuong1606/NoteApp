@@ -31,7 +31,6 @@ public class DetailActivity extends AppCompatActivity {
     private EditText  edt_description;
     int position;
     ReadWrite readWrite;
-
     private TextView tv_edit, tv_save, tv_delete;
     private TimePickerDialog.OnTimeSetListener callbackTime;
     private DatePickerDialog.OnDateSetListener callbackDay;
@@ -51,27 +50,19 @@ public class DetailActivity extends AppCompatActivity {
         position = getIntent().getIntExtra("position", 0);
         description = getIntent().getStringExtra("description");
         time = getIntent().getStringExtra("time");
-
         tit = (TextView) findViewById(R.id.tit);
         tv_title = (TextView) findViewById(R.id.tv_title);
-
         tv_title.setText(title);
-
         edt_description = (EditText) findViewById(R.id.edt_description2);
         edt_description.setEnabled(false);
         edt_description.setClickable(false);
         edt_description.setText(description);
-
         tvTime = (TextView) findViewById(R.id.tvTime);
         tvTime.setText(time);
         tvTime.setEnabled(false);
         tvTime.setClickable(false);
-
-
         tv_edit = (TextView) findViewById(R.id.tv_edit);
-
         tv_save = (TextView) findViewById(R.id.tv_save);
-
         tv_save.setVisibility(View.GONE);
         callbackDay = new DatePickerDialog.OnDateSetListener() {
 
@@ -104,16 +95,11 @@ public class DetailActivity extends AppCompatActivity {
                 pic.show();
             }
         };
-
-
         tv_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 tit.setVisibility(View.VISIBLE);
                 tv_title.setVisibility(View.GONE);
-
-
-
                 edt_description.setEnabled(true);
                 edt_description.setClickable(true);
                 tvTime.setEnabled(true);
@@ -124,7 +110,6 @@ public class DetailActivity extends AppCompatActivity {
                         SimpleDateFormat dft = null;
                         dft = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
                         String strDate = dft.format(cal.getTime());
-
                         String s = "12:12";
                         String strArr[] = s.split(":");
                         int gio = Integer.parseInt(strArr[0]);

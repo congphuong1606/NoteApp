@@ -24,9 +24,8 @@ public class MainActivity extends AppCompatActivity {
     TextView tv_appname, btn_delete, btn_cancel;
     ArrayList<Notes> notesArrayList;
     NotesAdapter notesAdapter;
-    private int mPosition;
     CheckBox chk_all;
-    private ArrayList<Notes> listOfItemsToDelete;
+    private boolean clickListview;
 
     public void finId() {
         tv_appname = (TextView) findViewById(R.id.tv_appname);
@@ -36,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         btn_new = (ImageButton) findViewById(R.id.btn_new);
         listViewNote = (ListView) findViewById(R.id.listViewNote);
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +48,6 @@ public class MainActivity extends AppCompatActivity {
         notesArrayList = readWrite.readNotes(readWrite.readData());
         notesAdapter = new NotesAdapter(MainActivity.this, R.layout.dong_note, notesArrayList, null);
         listViewNote.setAdapter(notesAdapter);
-        listOfItemsToDelete = new ArrayList<Notes>();
-
-
         listViewNote.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -62,11 +57,9 @@ public class MainActivity extends AppCompatActivity {
                 i.putExtra("description", notesArrayList.get(position).getmDescription());
                 i.putExtra("time", notesArrayList.get(position).getmTime());
                 startActivity(i);
-                finish();
+
             }
         });
-
-
         btn_new.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,15 +74,16 @@ public class MainActivity extends AppCompatActivity {
                 btn_cancel.setVisibility(View.VISIBLE);
                 chk_all.setVisibility(View.VISIBLE);
                 btn_new.setVisibility(View.GONE);
+
                 for (Notes notes : notesArrayList) {
-                    notes.setmCheckbox(true);
+                    notes.setmCheckbox(false);
                 }
+                notesAdapter = new NotesAdapter(MainActivity.this, R.layout.dong_note, notesArrayList, false);
+                listViewNote.setAdapter(notesAdapter);
                 notesAdapter.notifyDataSetChanged();
                 return true;
             }
         });
-
-
         btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,14 +92,13 @@ public class MainActivity extends AppCompatActivity {
 
                     if (notesAdapter.getItemObject(i).getmCheckbox()) {
                         notesArrayList.remove(i);
+                        i--;
                     }
                 }
+                notesAdapter = new NotesAdapter(MainActivity.this, R.layout.dong_note, notesArrayList, null);
+                listViewNote.setAdapter(notesAdapter);
                 notesAdapter.notifyDataSetChanged();
-
-                Toast.makeText(MainActivity.this, String.format("xóa thanh công"), Toast.LENGTH_SHORT).show();
-                for (Notes notes : notesArrayList) {
-                    notes.setmCheckbox(false);
-                }
+                Toast.makeText(MainActivity.this, String.format("xóa thành công"), Toast.LENGTH_SHORT).show();
                 notesAdapter.notifyDataSetChanged();
                 String json = new Gson().toJson(notesArrayList);
                 readWrite.saveNotes(json);
@@ -113,8 +106,6 @@ public class MainActivity extends AppCompatActivity {
                 btn_cancel.setVisibility(View.GONE);
                 btn_new.setVisibility(View.VISIBLE);
                 chk_all.setVisibility(View.GONE);
-
-
             }
         });
         btn_cancel.setOnClickListener(new View.OnClickListener() {
@@ -126,14 +117,10 @@ public class MainActivity extends AppCompatActivity {
                 chk_all.setVisibility(View.GONE);
                 for (Notes notes : notesArrayList) {
                     notes.setmCheckbox(false);
-
                 }
                 notesAdapter.notifyDataSetChanged();
-
             }
         });
-
-
         chk_all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,15 +132,8 @@ public class MainActivity extends AppCompatActivity {
                     notesAdapter = new NotesAdapter(MainActivity.this, R.layout.dong_note, notesArrayList, false);
                     listViewNote.setAdapter(notesAdapter);
                     notesAdapter.notifyDataSetChanged();
-
                 }
-
-
             }
         });
-
-
     }
-
-
 }

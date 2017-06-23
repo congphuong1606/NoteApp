@@ -75,7 +75,7 @@ private ImageButton ib_timer;
                 int ngay = Integer.parseInt(strArrtmp[2]);
 
                 DatePickerDialog pic = new DatePickerDialog(WriteNoteActivity.this,callbackDay, nam, thang, ngay);
-                pic.setTitle("selected date");
+                pic.setTitle("ngày hoàn thành");
                 pic.show();
                  callbackTime = new TimePickerDialog.OnTimeSetListener() {
                     @Override
@@ -99,7 +99,7 @@ private ImageButton ib_timer;
                 int gio = Integer.parseInt(strArr[0]);
                 int phut = Integer.parseInt(strArr[1]);
                 TimePickerDialog time = new TimePickerDialog(WriteNoteActivity.this, callbackTime, gio, phut, true);
-                time.setTitle("hous selected !");
+                time.setTitle("giờ hoàn thành");
                 time.show();
 
             }

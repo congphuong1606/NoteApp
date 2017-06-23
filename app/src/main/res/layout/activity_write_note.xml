@@ -75,6 +75,7 @@ android:layout_marginBottom="20dp"
             android:orientation="vertical">
 
             <TextView
+                android:layout_marginLeft="5dp"
                 android:id="@+id/tv_dename"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -106,17 +107,17 @@ android:layout_marginBottom="20dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="70dp"
         android:orientation="vertical"
-        android:paddingTop="10dp"
+        android:paddingTop="5dp"
         android:gravity="center"
-        android:paddingBottom="10dp">
+        android:paddingBottom="5dp">
         <RelativeLayout
             android:layout_gravity="center"
             android:layout_width="137dp"
             android:layout_height="wrap_content">
             <ImageButton
                 android:id="@+id/ib_timer"
-                android:layout_width="4dp"
-                android:layout_height="45dp"
+                android:layout_width="43dp"
+                android:layout_height="50dp"
                 android:background="@drawable/timer"
                 android:layout_alignParentTop="true"
                 android:layout_toLeftOf="@+id/layout_time"
@@ -149,7 +150,8 @@ android:layout_marginBottom="20dp"
                     android:gravity="center"
                     android:text="04:08"
                     android:textColor="@color/xanhchu"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:layout_gravity="bottom"/>
             </LinearLayout>
         </RelativeLayout>
 
