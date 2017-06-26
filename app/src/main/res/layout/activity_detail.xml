@@ -155,29 +155,29 @@ android:layout_marginLeft="5dp"
             android:id="@+id/tv_delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
 
 
             android:text="xóa"
             android:textColor="@color/den"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/layout"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/layout">
 
         <TextView
             android:paddingTop="10dp"
             android:id="@+id/tvTime"
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-android:layout_marginBottom="10dp"
+            android:layout_marginBottom="10dp"
             android:gravity="center|top"
             android:text="12/12/2017 20:03"
             android:textColor="@color/xanhchu"

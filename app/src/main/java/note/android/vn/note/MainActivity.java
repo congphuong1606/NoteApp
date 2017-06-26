@@ -75,9 +75,9 @@ public class MainActivity extends AppCompatActivity {
                 chk_all.setVisibility(View.VISIBLE);
                 btn_new.setVisibility(View.GONE);
 
-                for (Notes notes : notesArrayList) {
-                    notes.setmCheckbox(false);
-                }
+//                for (Notes notes : notesArrayList) {
+//                    notes.setmCheckbox(false);
+//                }
                 notesAdapter = new NotesAdapter(MainActivity.this, R.layout.dong_note, notesArrayList, false);
                 listViewNote.setAdapter(notesAdapter);
                 notesAdapter.notifyDataSetChanged();
@@ -87,25 +87,33 @@ public class MainActivity extends AppCompatActivity {
         btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                for (int i = 0; i < notesArrayList.size(); i++) {
-
-                    if (notesAdapter.getItemObject(i).getmCheckbox()) {
-                        notesArrayList.remove(i);
-                        i--;
+                int dem = 0;
+                for (Notes notes : notesArrayList) {
+                    if (notes.getmCheckbox()) {
+                        dem++;
                     }
                 }
-                notesAdapter = new NotesAdapter(MainActivity.this, R.layout.dong_note, notesArrayList, null);
-                listViewNote.setAdapter(notesAdapter);
-                notesAdapter.notifyDataSetChanged();
-                Toast.makeText(MainActivity.this, String.format("xóa thành công"), Toast.LENGTH_SHORT).show();
-                notesAdapter.notifyDataSetChanged();
-                String json = new Gson().toJson(notesArrayList);
-                readWrite.saveNotes(json);
-                btn_delete.setVisibility(View.GONE);
-                btn_cancel.setVisibility(View.GONE);
-                btn_new.setVisibility(View.VISIBLE);
-                chk_all.setVisibility(View.GONE);
+                if (dem > 0) {
+                    for (int i = 0; i < notesArrayList.size(); i++) {
+
+                        if (notesAdapter.getItemObject(i).getmCheckbox()) {
+                            notesArrayList.remove(i);
+                            i--;
+                        }
+                    }
+                    notesAdapter = new NotesAdapter(MainActivity.this, R.layout.dong_note, notesArrayList, null);
+                    listViewNote.setAdapter(notesAdapter);
+                    notesAdapter.notifyDataSetChanged();
+                    Toast.makeText(MainActivity.this, String.format("xóa thành công"), Toast.LENGTH_SHORT).show();
+                    notesAdapter.notifyDataSetChanged();
+                    String json = new Gson().toJson(notesArrayList);
+                    readWrite.saveNotes(json);
+                    btn_delete.setVisibility(View.GONE);
+                    btn_cancel.setVisibility(View.GONE);
+                    btn_new.setVisibility(View.VISIBLE);
+                    chk_all.setVisibility(View.GONE);
+                }
+
             }
         });
         btn_cancel.setOnClickListener(new View.OnClickListener() {
@@ -115,9 +123,11 @@ public class MainActivity extends AppCompatActivity {
                 btn_cancel.setVisibility(View.GONE);
                 btn_new.setVisibility(View.VISIBLE);
                 chk_all.setVisibility(View.GONE);
-                for (Notes notes : notesArrayList) {
-                    notes.setmCheckbox(false);
-                }
+//                for (Notes notes : notesArrayList) {
+//                    notes.setmCheckbox(true);
+//                }
+                notesAdapter = new NotesAdapter(MainActivity.this, R.layout.dong_note, notesArrayList, true);
+                listViewNote.setAdapter(notesAdapter);
                 notesAdapter.notifyDataSetChanged();
             }
         });

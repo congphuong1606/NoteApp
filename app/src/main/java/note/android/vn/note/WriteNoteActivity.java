@@ -30,7 +30,7 @@ public class WriteNoteActivity extends AppCompatActivity {
     private Calendar cal1, cal;
     private Date date, gio;
 private ImageButton ib_timer;
-    private TextView tv_dename, tv_creat, tv_date, tv_timer;
+    private TextView tv_dename, tv_creat, tv_date, tv_timer,tvTitleTime;
     private TimePickerDialog.OnTimeSetListener callbackTime;
     private DatePickerDialog.OnDateSetListener callbackDay;
 
@@ -152,6 +152,7 @@ ib_timer=(ImageButton)findViewById(R.id.ib_timer) ;
         tv_creat = (TextView) findViewById(R.id.tv_creat);
         tv_dename = (TextView) findViewById(R.id.tv_dename);
         tv_date = (TextView) findViewById(R.id.tv_date);
+        tvTitleTime = (TextView) findViewById(R.id.tv_title_time);
 
     }
 

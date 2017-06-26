@@ -71,7 +71,7 @@ public class NotesAdapter extends ArrayAdapter {
         if (iCheck != null) {
             if (iCheck) {
                 viewHolder.checkBox.setChecked(true);
-                viewHolder.checkBox.setVisibility(View.VISIBLE);
+                viewHolder.checkBox.setVisibility(View.GONE);
             } else {
                 viewHolder.checkBox.setChecked(false);
                 viewHolder.checkBox.setVisibility(View.VISIBLE);
