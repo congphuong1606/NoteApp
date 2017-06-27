@@ -25,20 +25,20 @@ public class NotesAdapter extends ArrayAdapter {
     Context myContext;
     int myLayout;
     ArrayList<Notes> arrayList;
-    public Boolean iCheck = null;
-    boolean checkView;
+    public boolean iCheck = false;
+    public boolean echeck = false;
 
 
-    public NotesAdapter(@NonNull Context context, @LayoutRes int layout, @NonNull ArrayList<Notes> arrayList, Boolean iCheck) {
-
+    public NotesAdapter(@NonNull Context context, @LayoutRes int layout, ArrayList<Notes> arrayList, boolean iCheck, boolean echeck) {
         super(context, layout, arrayList);
-        this.iCheck = iCheck;
         this.myContext = context;
         this.myLayout = layout;
         this.arrayList = arrayList;
-
-
+        this.iCheck = iCheck;
+        this.echeck = echeck;
     }
+
+
 
 
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parrent) {
@@ -66,17 +66,19 @@ public class NotesAdapter extends ArrayAdapter {
             }
         });
 
+        if (echeck) {
+            viewHolder.checkBox.setChecked(true);
+        } else viewHolder.checkBox.setChecked(false);
 
 
-        if (iCheck != null) {
-            if (iCheck) {
-                viewHolder.checkBox.setChecked(true);
-                viewHolder.checkBox.setVisibility(View.GONE);
-            } else {
-                viewHolder.checkBox.setChecked(false);
-                viewHolder.checkBox.setVisibility(View.VISIBLE);
-            }
+        if (iCheck) {
+
+            viewHolder.checkBox.setVisibility(View.VISIBLE);
+        } else {
+
+            viewHolder.checkBox.setVisibility(View.GONE);
         }
+
 
         viewHolder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

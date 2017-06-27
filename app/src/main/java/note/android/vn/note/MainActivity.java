@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         chk_all.setVisibility(View.GONE);
         btn_cancel.setVisibility(View.GONE);
         notesArrayList = readWrite.readNotes(readWrite.readData());
-        notesAdapter = new NotesAdapter(MainActivity.this, R.layout.dong_note, notesArrayList, null);
+        notesAdapter = new NotesAdapter(MainActivity.this, R.layout.dong_note, notesArrayList, false,false);
         listViewNote.setAdapter(notesAdapter);
         listViewNote.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 //                for (Notes notes : notesArrayList) {
 //                    notes.setmCheckbox(false);
 //                }
-                notesAdapter = new NotesAdapter(MainActivity.this, R.layout.dong_note, notesArrayList, false);
+                notesAdapter = new NotesAdapter(MainActivity.this, R.layout.dong_note, notesArrayList, true,false);
                 listViewNote.setAdapter(notesAdapter);
                 notesAdapter.notifyDataSetChanged();
                 return true;
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                             i--;
                         }
                     }
-                    notesAdapter = new NotesAdapter(MainActivity.this, R.layout.dong_note, notesArrayList, null);
+                    notesAdapter = new NotesAdapter(MainActivity.this, R.layout.dong_note, notesArrayList, false,false);
                     listViewNote.setAdapter(notesAdapter);
                     notesAdapter.notifyDataSetChanged();
                     Toast.makeText(MainActivity.this, String.format("xóa thành công"), Toast.LENGTH_SHORT).show();
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
 //                for (Notes notes : notesArrayList) {
 //                    notes.setmCheckbox(true);
 //                }
-                notesAdapter = new NotesAdapter(MainActivity.this, R.layout.dong_note, notesArrayList, true);
+                notesAdapter = new NotesAdapter(MainActivity.this, R.layout.dong_note, notesArrayList, false,false);
                 listViewNote.setAdapter(notesAdapter);
                 notesAdapter.notifyDataSetChanged();
             }
@@ -135,11 +135,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (chk_all.isChecked()) {
-                    notesAdapter = new NotesAdapter(MainActivity.this, R.layout.dong_note, notesArrayList, true);
+                    notesAdapter = new NotesAdapter(MainActivity.this, R.layout.dong_note, notesArrayList, true,true);
                     listViewNote.setAdapter(notesAdapter);
                     notesAdapter.notifyDataSetChanged();
                 } else {
-                    notesAdapter = new NotesAdapter(MainActivity.this, R.layout.dong_note, notesArrayList, false);
+                    notesAdapter = new NotesAdapter(MainActivity.this, R.layout.dong_note, notesArrayList, true,false);
                     listViewNote.setAdapter(notesAdapter);
                     notesAdapter.notifyDataSetChanged();
                 }
